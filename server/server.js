@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+var expressHbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const expressValidator = require('express-validator');
@@ -10,15 +11,18 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/murvieLogin');
+const publicPath = path.join(__dirname, '../public');
+mongoose.connect('mongodb://localhost/murvie');
 const db = mongoose.connection;
 var app = express();
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('../routes/index');
+var users = require('../routes/users');
+
 
 app.set('view engine', 'hbs');
-app.use(express.static(__dirname + '/public'));
+app.engine('hbs', expressHbs({ extname: 'hbs', defaultLayout: 'layout.hbs' }));
+app.use(express.static(publicPath));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -30,6 +34,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use(expressValidator({
     errorFormatter: function(param, msg, value) {
         var namespace = param.split('.'),
@@ -57,5 +62,11 @@ app.use(function(req, res, next) {
 // app.get('/', (req, res) => {
 //    res.render('login.hbs'); 
 // });
+app.use('/', routes);
+app.use('/users', users);
 
-app.listen(3000);
+app.set('port', (process.env.PORT || 3000));
+
+app.listen(app.get('port'), function() {
+    console.log('Server started on port ' + app.get('port'));
+});
