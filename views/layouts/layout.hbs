@@ -11,12 +11,12 @@
 </head>
 
 <body>
-
+{{#if user}}
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills float-right">
 
-                {{#if user}}
+                
                 <li class="nav-item">
                     <a class="nav-link active" href="/">Dashboard
                         <span class="sr-only">(current)</span>
@@ -26,19 +26,17 @@
                     <a class="nav-link" href="/users/logout">Logout</a>
                 </li>
 
-                {{else}}
-                <li class="nav-item">
-                    <a class="nav-link" href="/users/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/users/register">Register</a>
-                </li>
-                {{/if}}
 
             </ul>
         </nav>
         <h3 class="text-muted">Murvie</h3>
     </div>
+     {{else}}
+    {{!-- <li class="nav-item">
+        <a class="nav-link" href="/users/login">Login</a>
+    </li> --}}
+    
+    {{/if}}
 
 
 
@@ -53,11 +51,11 @@
     {{/if}} {{{body}}}
 
 
-
+    {{#if user}}
     <footer class="footer">
         <p>&copy; Murvie.LLC</p>
     </footer>
-
+    {{/if}}
 
     <!-- /container -->
 </body>
