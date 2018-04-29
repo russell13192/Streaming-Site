@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,23 +9,57 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>Document</title>
 </head>
+
 <body>
-    <div class="row">
-        <div class="col-lg-12">
-            {{#if success_msg}}
-                <div class="alert alert-success">{{success_msg}}</div>
-            {{/if}}
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills float-right">
 
-            {{#if error_msg}}
-                <div class="alert alert-danger">{{error_msg}}</div>
-            {{/if}}
+                    {{#if user}}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Dashboard
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/logout">Logout</a>
+                    </li>
 
-            {{#if error}}
-                <div class="alert alert-danger">{{error}}</div>
-            {{/if}}
-            {{{body}}}
+                    {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/register">Register</a>
+                    </li>
+                    {{/if}}
+
+                </ul>
+            </nav>
+            <h3 class="text-muted">Login App</h3>
         </div>
+
+
+
+        <div class="row ">
+            <div class="col-lg-12">
+                {{#if success_msg}}
+                <div class="alert alert-success">{{success_msg}}</div>
+                {{/if}} {{#if error_msg}}
+                <div class="alert alert-danger">{{error_msg}}</div>
+                {{/if}} {{#if error}}
+                <div class="alert alert-danger">{{error}}</div>
+                {{/if}} {{{body}}}
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; Murvie.LLC</p>
+        </footer>
+
     </div>
-    
+    <!-- /container -->
 </body>
+
 </html>
