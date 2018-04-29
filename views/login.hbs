@@ -1,18 +1,17 @@
-<div class="container" id="login-container" style="width: 100%; height: 100%; ">
+<div id="login-container">
+    <div class="container">
+        <h2 class="page-header">Account Login</h2>
+        <form method="post" action="/users/login">
+            <input type="text" class="form-control" placeholder="Username" name="username">
+            <br>
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            <br>
 
-    <h2 class="page-header">Account Login</h2>
-    <form method="post" action="/users/login">
-        <input type="text" class="form-control" placeholder="Username" name="username">
-        <br>
-        <input type="password" class="form-control" placeholder="Password" name="password">
-        <br>
+            <a class="nav-link" href="/users/register">Register</a>
 
-        <a class="nav-link" href="/users/register">Register</a>
+            <button type="submit">Submit</button>
 
-        <button type="submit">Submit</button>
-        <div id="backImgTest" style="background-image: url(" /css/theater_seats.jpg ")">
 
-        </div>
-
-    </form>
+        </form>
+    </div>
 </div>
